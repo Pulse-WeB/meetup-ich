@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meetup</title>
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <a class="header__logo" href="index.html" aria-label="Meetup home">
+        <img src="assets/images/logo.svg" alt="Meetup" width="94" height="34" />
+      </a>
+      <div class="header__search">
+        <label class="header__field header__field_search">
+          <img class="header__icon" src="assets/images/search.svg" alt="" width="22" height="22" />
+          <input type="text" placeholder="Search events" readonly aria-label="Search events" />
+        </label>
+        <label class="header__field header__field_location">
+          <input type="text" value="Mountain View, CA" readonly aria-label="Location" />
+        </label>
+        <a class="header__submit" href="#" aria-hidden="true">
+          <img src="assets/images/search-white.svg" alt="" width="20" height="20" />
+        </a>
+      </div>
+      <div class="header__actions">
+        <a class="header__lang" href="#">
+          <img src="assets/images/globe.svg" alt="" width="20" height="20" />
+          English
+        </a>
+        <a class="header__login" href="#">Log in</a>
+        <a class="header__signup" href="#">Sign up</a>
+      </div>
+    </header>
+
+    <main class="home">
+      <section class="hero">
+        <div class="container hero__inner">
+          <div class="hero__content">
+            <h1 class="hero__title">The people platform—Where interests become friendships</h1>
+            <p class="hero__text">
+              Whatever your interest, from hiking and reading to networking and skill sharing, there are thousands of
+              people who share it on Meetup. Events are happening every day—sign up to join the fun.
+            </p>
+            <a class="hero__button" href="events.html">Join Meetup</a>
+          </div>
+          <img class="hero__image" src="assets/images/hero.png" alt="People riding a tandem bike together" />
+        </div>
+      </section>
+
+      <section class="events-block">
+        <div class="container events-block__inner">
+          <div class="events">
+            <div class="events__head">
+              <div class="events__heading">
+                <h2 class="events__title">Events near</h2>
+                <p class="events__place">
+                  Mountain View, CA
+                  <img src="assets/images/location-edit.svg" alt="" width="22" height="22" />
+                </p>
+              </div>
+              <a class="events__all" href="events.html">See all events</a>
+            </div>
+            <div class="events__list" data-events="near"></div>
+          </div>
+
+          <div class="events">
+            <div class="events__head">
+              <h2 class="events__title">Upcoming online events</h2>
+              <a class="events__all" href="events.html">See all events</a>
+            </div>
+            <div class="events__list" data-events="online"></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="container page-rest">
+        <section class="join">
+          <div class="join__content">
+            <h2 class="join__title">Join Meetup</h2>
+            <p class="join__text">
+              People use Meetup to meet new people, learn new things, find support, get out of their comfort zones, and
+              pursue their passions, together. Membership is free.
+            </p>
+            <a class="join__button" href="#">Sign up</a>
+          </div>
+          <img class="join__image" src="assets/images/join-people.png" alt="" />
+        </section>
+
+        <section class="categories">
+          <h2 class="section-title">Explore top categories</h2>
+          <div class="categories__list">
+            <div class="category">
+              <img src="assets/images/category-travel.svg" alt="" width="20" height="20" />
+              <p class="category__name">Travel and<br />Outdoor</p>
+            </div>
+            <div class="category">
+              <img src="assets/images/category-social.svg" alt="" width="20" height="20" />
+              <p class="category__name">Social<br />Activities</p>
+            </div>
+            <div class="category">
+              <img src="assets/images/category-hobbies.svg" alt="" width="20" height="20" />
+              <p class="category__name">Hobbies and<br />Passions</p>
+            </div>
+            <div class="category">
+              <img src="assets/images/category-sports.svg" alt="" width="20" height="20" />
+              <p class="category__name">Sports and<br />Fitness</p>
+            </div>
+            <div class="category">
+              <img src="assets/images/category-health.svg" alt="" width="20" height="20" />
+              <p class="category__name">Health and<br />Wellbeing</p>
+            </div>
+            <div class="category">
+              <img src="assets/images/category-tech.svg" alt="" width="20" height="20" />
+              <p class="category__name">Technology</p>
+            </div>
+            <div class="category">
+              <img src="assets/images/category-art.svg" alt="" width="20" height="20" />
+              <p class="category__name">Art and<br />Culture</p>
+            </div>
+            <div class="category">
+              <img src="assets/images/category-games.svg" alt="" width="20" height="20" />
+              <p class="category__name">Games</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="cities">
+          <div class="cities__intro">
+            <h2 class="section-title">Popular cities on Meetup</h2>
+            <p class="section-text">
+              Looking for fun things to do near you? See what Meetup organizers are planning in cities around the
+              country.
+            </p>
+          </div>
+          <div class="cities__list">
+            <div class="city">
+              <img class="city__image" src="assets/images/city-new-york.png" alt="New York" />
+              <p class="city__name">New York</p>
+            </div>
+            <div class="city">
+              <img class="city__image" src="assets/images/city-san-francisco.png" alt="San Francisco" />
+              <p class="city__name">San Francisco</p>
+            </div>
+            <div class="city">
+              <img class="city__image" src="assets/images/city-chicago.png" alt="Chicago" />
+              <p class="city__name">Chicago</p>
+            </div>
+            <div class="city">
+              <img class="city__image" src="assets/images/city-nashville.png" alt="Nashville" />
+              <p class="city__name">Nashville</p>
+            </div>
+            <div class="city">
+              <img class="city__image" src="assets/images/city-miami.png" alt="Miami" />
+              <p class="city__name">Miami</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="works">
+          <h2 class="section-title">How Meetup works</h2>
+          <div class="works__list">
+            <div class="works__card">
+              <img src="assets/images/works-search.svg" alt="" width="41" height="41" />
+              <div class="works__content">
+                <h3 class="works__title">Discover events and groups</h3>
+                <p class="works__text">See who's hosting local events for all the things you love</p>
+                <a class="works__link" href="#">Search events and groups</a>
+              </div>
+            </div>
+            <div class="works__card">
+              <img src="assets/images/works-plus.svg" alt="" width="41" height="41" />
+              <div class="works__content">
+                <h3 class="works__title">Start a group to host events</h3>
+                <p class="works__text">Create your own Meetup group, and draw from a community of millions</p>
+                <a class="works__link" href="#">Start a group</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="stories">
+          <div class="stories__intro">
+            <h2 class="section-title">Friendships are made on Meetup</h2>
+            <p class="section-text">
+              Since 2002, members have used Meetup to make new friends, meet like-minded people, spend time on hobbies,
+              and connect with locals over shared interests. Learn how.
+            </p>
+          </div>
+          <div class="stories__list">
+            <article class="story">
+              <img class="story__image" src="assets/images/story-1.png" alt="Friends at brunch" />
+              <h3 class="story__title">I Used Meetup to Make Friends at Brunch</h3>
+              <p class="story__text">
+                New Jersey-based writer and college student Brianna Stryker wanted to meet friends in her hometown.
+                Learn how she used Meetup to make connections by joining a Girls Night Out Meetup group.
+              </p>
+              <a class="story__link" href="#">Read more</a>
+            </article>
+            <article class="story">
+              <img class="story__image" src="assets/images/story-2.png" alt="Two people sitting in a park" />
+              <h3 class="story__title">How to Turn Casual Connections into Close Friendships</h3>
+              <p class="story__text">
+                It’s proven that close friendships are harder to make as an adult. But don’t sweat it: here’s what you
+                can do to simplify the process.
+              </p>
+              <a class="story__link" href="#">Read more</a>
+            </article>
+            <article class="story">
+              <img class="story__image" src="assets/images/story-3.png" alt="Friends walking together" />
+              <h3 class="story__title">Do You Have the “Right” Number of Friends?</h3>
+              <p class="story__text">
+                Studies from around the world have tried to help people answer this question. Learn about the three
+                tiers of friendship and how to fulfill them.
+              </p>
+              <a class="story__link" href="#">Read more</a>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__inner">
+        <div class="footer__cta">
+          <p class="footer__cta-text">Create your own Meetup group.</p>
+          <a class="footer__button" href="#">Get Started</a>
+        </div>
+        <nav class="footer__nav" aria-label="Footer">
+          <div class="footer__column">
+            <p class="footer__heading">Your Account</p>
+            <a class="footer__link" href="#">Sign up</a>
+            <a class="footer__link" href="#">Log in</a>
+            <a class="footer__link" href="#">Help</a>
+            <a class="footer__link" href="#">Become an Affiliate</a>
+          </div>
+          <div class="footer__column">
+            <p class="footer__heading">Discover</p>
+            <a class="footer__link" href="#">Groups</a>
+            <a class="footer__link" href="#">Calendar</a>
+            <a class="footer__link" href="#">Topics</a>
+            <a class="footer__link" href="#">Cities</a>
+            <a class="footer__link" href="#">Online Events</a>
+            <a class="footer__link" href="#">Local Guides</a>
+            <a class="footer__link" href="#">Make Friends</a>
+          </div>
+          <div class="footer__column">
+            <p class="footer__heading">Meetup</p>
+            <a class="footer__link" href="#">About</a>
+            <a class="footer__link" href="#">Blog</a>
+            <a class="footer__link" href="#">Meetup Pro</a>
+            <a class="footer__link" href="#">Careers</a>
+            <a class="footer__link" href="#">Apps</a>
+            <a class="footer__link" href="#">Podcast</a>
+          </div>
+        </nav>
+        <div class="footer__bottom">
+          <div class="footer__social">
+            <p class="footer__social-title">Follow us</p>
+            <div class="footer__icons">
+              <img src="assets/images/facebook.svg" alt="Facebook" width="30" height="30" />
+              <img src="assets/images/twitter.svg" alt="Twitter" width="30" height="30" />
+              <img src="assets/images/youtube.svg" alt="YouTube" width="30" height="30" />
+              <img src="assets/images/instagram.svg" alt="Instagram" width="30" height="30" />
+              <img src="assets/images/tiktok.svg" alt="TikTok" width="30" height="30" />
+            </div>
+          </div>
+          <div class="footer__apps">
+            <img class="footer__badge" src="assets/images/google-play.svg" alt="Get it on Google Play" width="140" height="40" />
+            <img class="footer__badge" src="assets/images/app-store.png" alt="Download on the App Store" width="140" height="40" />
+          </div>
+        </div>
+        <div class="footer__legal">
+          <span class="footer__copy">© 2024 Meetup</span>
+          <a class="footer__link" href="#">Terms of Service</a>
+          <a class="footer__link" href="#">Privacy Policy</a>
+          <a class="footer__link" href="#">Do Not Sell or Share My Personal Data</a>
+          <a class="footer__link" href="#">Cookie Policy</a>
+          <a class="footer__link" href="#">Help</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
