@@ -1,10 +1,10 @@
-// 1. VARIABLES
+// 1. Переменные
 const nearContainer = document.querySelector("[data-events='near']");
 const onlineContainer = document.querySelector("[data-events='online']");
 const eventsList = document.querySelector("[data-events='list']");
 const dateMenu = document.querySelector("[data-filter-menu='date']");
 
-// 2. EVENTS DATA
+// 2. Дата
 const eventsData = [
   {
     id: 1,
@@ -20,7 +20,8 @@ const eventsData = [
   },
   {
     id: 2,
-    title: "NYC AI Users - AI Tech Talks, Demo & Social: RAG Search and Customer Experience",
+    title:
+      "NYC AI Users - AI Tech Talks, Demo & Social: RAG Search and Customer Experience",
     description: "New York AI Users",
     date: new Date(2026, 9, 24, 11, 30),
     image:
@@ -150,7 +151,7 @@ const eventsData = [
   },
 ];
 
-// 3. CLASSES
+// 3. Классы
 class MeetupEvent {
   constructor(data) {
     this.id = data.id;
@@ -228,7 +229,9 @@ class EventsStore {
     const dates = [];
 
     this.events.forEach((event) => {
-      const alreadyAdded = dates.some((item) => item.key === event.getDateKey());
+      const alreadyAdded = dates.some(
+        (item) => item.key === event.getDateKey(),
+      );
 
       if (!alreadyAdded) {
         dates.push({
@@ -247,10 +250,23 @@ class EventsStore {
 
 const store = new EventsStore();
 
-// 4. FUNCTIONS
+// 4. Функции
 function formatDate(date) {
   const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
   const minutes = String(date.getMinutes()).padStart(2, "0");
   const suffix = date.getHours() >= 12 ? "PM" : "AM";
   const hours = date.getHours() % 12 || 12;
@@ -279,7 +295,7 @@ function renderBadge(event) {
   `;
 }
 
-// 5. RENDER EVENTS
+// 5. Рендер ивентов
 function renderCard(event) {
   const attendees = event.attendees
     ? `
@@ -324,14 +340,14 @@ function renderRow(event) {
 
   return `
     <article class="event-row">
-      <div class="event-row__media">
-        <img class="event-row__image" src="${escapeHtml(event.image)}" alt="${escapeHtml(event.title)}">
-        ${renderBadge(event)}
-      </div>
+      <img class="event-row__image" src="${escapeHtml(event.image)}" alt="${escapeHtml(event.title)}">
       <div class="event-row__body">
-        <p class="event-row__date">${escapeHtml(event.getDateLabel())}</p>
-        <h2 class="event-row__title">${escapeHtml(event.title)}</h2>
-        <p class="event-row__category">${escapeHtml(event.getCategoryLabel())}</p>
+        <div class="event-row__content">
+          <p class="event-row__date">${escapeHtml(event.getDateLabel())}</p>
+          <h2 class="event-row__title">${escapeHtml(event.title)}</h2>
+          <p class="event-row__category">${escapeHtml(event.getCategoryLabel())}</p>
+          ${renderBadge(event)}
+        </div>
         ${attendees}
       </div>
     </article>
@@ -355,17 +371,23 @@ function renderEvents(events, container, view) {
   container.innerHTML = markup;
 }
 
-function renderHome() {
-  if (nearContainer) {
-    renderEvents(store.getByType("offline"), nearContainer, "card");
+function renderHomeList(events, container) {
+  if (!container) {
+    return;
   }
 
-  if (onlineContainer) {
-    renderEvents(store.getByType("online"), onlineContainer, "card");
-  }
+  const cards = events.map((event) => renderCard(event)).join("");
+  const rows = events.map((event) => renderRow(event)).join("");
+
+  container.innerHTML = `${cards}<div class="events__rows">${rows}</div>`;
 }
 
-// 6. FILTERS
+function renderHome() {
+  renderHomeList(store.getByType("offline"), nearContainer);
+  renderHomeList(store.getByType("online"), onlineContainer);
+}
+
+// 6. Фильтры
 const selectedFilters = {
   type: "",
   distance: "",
@@ -391,6 +413,42 @@ function fillDateOptions() {
   });
 }
 
+function resetFilterMenu(menu) {
+  menu.style.position = "";
+  menu.style.top = "";
+  menu.style.left = "";
+}
+
+function placeFilterMenu(button, menu) {
+  const filters = button.closest(".filters");
+  const scrolls = filters && filters.scrollWidth > filters.clientWidth + 1;
+
+  if (!scrolls) {
+    resetFilterMenu(menu);
+    return;
+  }
+
+  const buttonRect = button.getBoundingClientRect();
+
+  menu.style.position = "fixed";
+  menu.style.top = `${buttonRect.bottom + 8}px`;
+  menu.style.left = `${buttonRect.left}px`;
+
+  const menuWidth = menu.offsetWidth;
+  const edge = 16;
+  let left = buttonRect.left;
+
+  if (left + menuWidth > window.innerWidth - edge) {
+    left = window.innerWidth - edge - menuWidth;
+  }
+
+  if (left < edge) {
+    left = edge;
+  }
+
+  menu.style.left = `${left}px`;
+}
+
 function closeFilters(except) {
   document.querySelectorAll(".filter").forEach((filter) => {
     if (filter === except) {
@@ -404,6 +462,7 @@ function closeFilters(except) {
 
     if (menu) {
       menu.hidden = true;
+      resetFilterMenu(menu);
     }
 
     if (button) {
@@ -437,6 +496,12 @@ function initFilters() {
       menu.hidden = !willOpen;
       filter.classList.toggle("filter_open", willOpen);
       button.setAttribute("aria-expanded", String(willOpen));
+
+      if (willOpen) {
+        placeFilterMenu(button, menu);
+      } else {
+        resetFilterMenu(menu);
+      }
     });
 
     menu.addEventListener("click", (event) => {
@@ -449,6 +514,7 @@ function initFilters() {
       selectedFilters[key] = option.dataset.value;
       label.textContent = option.textContent;
       menu.hidden = true;
+      resetFilterMenu(menu);
       filter.classList.remove("filter_open");
       button.setAttribute("aria-expanded", "false");
       applyFilters();
@@ -467,9 +533,31 @@ function initFilters() {
     }
   });
 
+  const filters = document.querySelector(".filters");
+
+  function placeOpenFilterMenu() {
+    const openFilter = document.querySelector(".filter_open");
+
+    if (!openFilter) {
+      return;
+    }
+
+    placeFilterMenu(
+      openFilter.querySelector(".filter__button"),
+      openFilter.querySelector(".filter__menu"),
+    );
+  }
+
+  if (filters) {
+    filters.addEventListener("scroll", placeOpenFilterMenu);
+  }
+
+  window.addEventListener("scroll", placeOpenFilterMenu);
+  window.addEventListener("resize", placeOpenFilterMenu);
+
   applyFilters();
 }
 
-// 7. EVENT LISTENERS
+// 7. Слушатели
 renderHome();
 initFilters();
